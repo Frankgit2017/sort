@@ -1,0 +1,44 @@
+package helloworld;
+
+public class mergesort{ 
+	public static void main(String[] args){
+		int[] x={2,3,5,6,1,4,9,7,8,0}；
+		int[] sorted=new int[10];
+		mergesort a=new mergesort();
+		a.merge_sort(x,0,10,sorted);
+		int i=0;
+		for(i=0;i<10;i++){
+			System.out.print(x[i]);
+		
+	
+		}
+		
+	}
+    public void merge_sort(int[] unsorted,int first,int last,int[]sorted ){
+    	 if (first + 1 < last)
+         {
+             int mid = (first + last) / 2;
+             merge_sort(unsorted, first, mid, sorted);
+             merge_sort(unsorted, mid, last, sorted);
+             merge(unsorted, first, mid, last, sorted);
+         }
+    }
+    public void merge(int[] unsorted, int first, int mid, int last, int[] sorted){
+    	int i = first, j = mid;
+        int k = 0;
+        while (i < mid && j < last)
+            if (unsorted[i] < unsorted[j])
+                sorted[k++] = unsorted[i++];
+            else
+                sorted[k++] = unsorted[j++];
+
+        while (i < mid)
+            sorted[k++] = unsorted[i++];
+        while (j < last)
+            sorted[k++] = unsorted[j++];
+
+        for (int v = 0; v < k; v++)
+            unsorted[first + v] = sorted[v];
+    }
+}
+
